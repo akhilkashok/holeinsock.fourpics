@@ -1,0 +1,331 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+<title>Your New Application</title>
+<link rel="stylesheet" type="text/css" id='css' href="style1.css" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8"> 
+
+<style type="text/css">
+  
+</style>
+
+<script type="text/javascript" charset="utf-8" src="http://localhost:58888/_appMobi/appmobi.js"></script> 
+<script type="text/javascript" charset="utf-8" src="http://localhost:58888/_appMobi/xhr.js"></script> 
+<script type="text/javascript" charset="utf-8" src="facebook.js"></script>
+
+<script type="text/javascript" charset="utf-8" src="jquery.js"></script> 
+<script type="text/javascript" charset="utf-8" src="data.js"></script> 
+<script type="text/javascript" charset="utf-8" src="xml2json.js"></script> 
+<script type="text/javascript" charset="utf-8" src="lq.js"></script> 
+<script type="text/javascript" charset="utf-8" src="social.js"></script> 
+<script type="text/javascript" charset="utf-8" src="helpers.js"></script> 
+<script type="text/javascript" charset="utf-8" src="backbutton.js"></script> 
+<script type="text/javascript" charset="utf-8" src="storage.js"></script> 
+<script type="text/javascript" charset="utf-8" src="achievements.js"></script> 
+<script type="text/javascript" charset="utf-8" src="ads.js"></script> 
+
+                        
+<script type="text/javascript">
+/* This function runs once the page is loaded',' but appMobi is not yet active */
+
+
+
+
+
+/* This code prevents users from dragging the page */
+var preventDefaultScroll = function(event) {
+    event.preventDefault();
+    window.scroll(0,0);
+    return false;
+};
+document.addEventListener('touchmove', preventDefaultScroll, false);
+
+/* This code is used to run as soon as appMobi activates */
+var onDeviceReady=function(){
+    //Size the display to 768px by 1024px
+    AppMobi.display.useViewport(640,853);
+	       AppMobi.device.setRotateOrientation("portrait");
+            AppMobi.device.setAutoRotate(false);
+	//hide splash screen
+	AppMobi.device.hideSplashScreen();	
+	   document.addEventListener("appMobi.device.hardware.back", hwBackButton_Pressed, false);
+	
+		init();
+//$(document).ready(init);
+};
+
+document.addEventListener("appMobi.device.ready",onDeviceReady,false);    
+</script>
+
+
+
+</head>
+<body onload=''>
+
+<div id='main' class='hwacccel frame'>
+<div id='mySplash' class='hwaccel'>
+<div class='header' id='headerSplash'>
+<div class='headerText'></div>
+
+</div>
+<div class='logo'></div>
+<div id='splashTrivia'></div>
+
+<div class='ajax'></div>
+
+
+</div>
+<div id='menuFrame' class='frame frameHidden'>
+<div id='menu'>
+<div class='header' id='headerMenu'>
+<div class='fbShare' ontouchstart='shareApp()'></div>
+<div class='headerText'></div>
+</div>
+<div class='logo'></div>
+
+<div id='menuButtons' class='needsMargin'>
+<div id='btMenuPlay' class='btMenu' ontouchstart='showOnly(0)'>שחק!</div> 
+<div id='btMenuSettings' class='btMenu' onclick='showOnly(5)'>הגדרות</div> 
+<div id='btMenuAbout' class='btMenu' onclick='showOnly(6)' >אודות</div> 
+<div id='btMenuAchievements' class='btMenu' ontouchstart='showOnly(4)'>הישגים</div> 
+
+<!--
+<div id='btMenuBug' class='btMenu'  ontouchstart="his.e('sendBug').style.display='block';bugman.clear();" >דווח על באג</div> 
+!-->
+</div>
+<!--
+<div id='sendBug'> 
+	<div>שולח:</div><input id='bugSender'> </input>
+	<div>מכשיר:</div><input id='bugDevice'> </input>
+	<div>OS:</div><input id='bugOs'></input>
+	<div>תיאור:</div><textarea id='bugIssue'></textarea>
+	<div id='bugDesc'></div>
+	<div class='btMenu' onclick='bugman.sendBug()'>שלח</div>
+	
+</div>
+!-->
+</div>
+
+
+</div>
+
+<div id='levelsFrame' class='frame frameHidden'>
+	<div class='header' id='headerLevels'>
+		<div class='back' ontouchstart='showOnly(3)'></div>
+		<div class='headerText'></div>
+		<div class='fbShare' onclick='shareApp()'></div>
+	</div>
+	
+<div id='levels' class='needsMargin'>
+<div id='l1' class='levelCard'><div id='l1Number' class='levelNumber strokeText'>1</div><div id='l1Score' class='levelScore '>6543</div><div id='l1Progress' class='levelProgress '>32/40</div><div id='l1ProgressLeft' class='levelProgressLeft'></div><div id='l1Perfects' class='levelPerfects '>8</div><div id='l1Fastest' class='levelFastest '>1.2 ש'</div><div id='l1ProgressBar' class='levelProgressBar' ></div> <div id='l1ProgressBarLeft' class='levelProgressBarLeft' ></div><div id='l1Toucher' class='levelToucher'></div><div id='l1Play' class='levelPlay ' ontouchstart='goToLevel(1)'></div></div>
+
+<div id='l2' class='levelCard'><div id='l2Number' class='levelNumber strokeText'>2</div><div id='l2Score' class='levelScore '>6543</div><div id='l2Progress' class='levelProgress '></div><div id='l2ProgressLeft' class='levelProgressLeft'></div><div id='l2Perfects' class='levelPerfects '>8</div><div id='l2Fastest' class='levelFastest '>2.2 ש'</div><div id='l2ProgressBar' class='levelProgressBar' ></div> <div id='l2ProgressBarLeft' class='levelProgressBarLeft' ></div><div id='l2Toucher' class='levelToucher'></div><div id='l2Play' class='levelPlay ' ontouchstart='goToLevel(2)'></div></div>
+
+<div id='l3' class='levelCard'><div id='l3Number' class='levelNumber strokeText'>3</div><div id='l3Score' class='levelScore '>6543</div><div id='l3Progress' class='levelProgress '></div><div id='l3ProgressLeft' class='levelProgressLeft'></div><div id='l3Perfects' class='levelPerfects '>8</div><div id='l3Fastest' class='levelFastest '>3.2 ש'</div><div id='l3ProgressBar' class='levelProgressBar' ></div> <div id='l3ProgressBarLeft' class='levelProgressBarLeft' ></div><div id='l3Toucher' class='levelToucher'></div><div id='l3Play' class='levelPlay ' ontouchstart='goToLevel(3)'></div></div>
+<div id='l4' class='levelCardLocked'><div id='l4Number' class='levelNumber strokeText'>4</div><div id='l4Score' class='levelScore '>6544</div><div id='l4Progress' class='levelProgress '></div><div id='l4ProgressLeft' class='levelProgressLeft'></div><div id='l4Perfects' class='levelPerfects '>8</div><div id='l4Fastest' class='levelFastest '>4.2 ש'</div><div id='l4ProgressBar' class='levelProgressBar' ></div> <div id='l4ProgressBarLeft' class='levelProgressBarLeft' ></div><div id='l4Toucher' class='levelToucher'></div><div id='l4Play' class='levelPlay ' ontouchstart='goToLevel(4)'></div></div>
+
+<div id='l5' class='levelCardLocked'><div id='l5Number' class='levelNumber strokeText'>5</div><div id='l5Score' class='levelScore '>6545</div><div id='l5Progress' class='levelProgress '></div><div id='l5ProgressLeft' class='levelProgressLeft'></div><div id='l5Perfects' class='levelPerfects '>8</div><div id='l5Fastest' class='levelFastest '>5.2 ש'</div><div id='l5ProgressBar' class='levelProgressBar' ></div> <div id='l5ProgressBarLeft' class='levelProgressBarLeft' ></div><div id='l5Toucher' class='levelToucher'></div><div id='l5Play' class='levelPlay ' ontouchstart='goToLevel(5)'></div></div>
+<div id='l6' class='levelCardLocked'><div id='l6Number' class='levelNumber strokeText'>6</div><div id='l6Score' class='levelScore '>6646</div><div id='l6Progress' class='levelProgress '></div><div id='l6ProgressLeft' class='levelProgressLeft'></div><div id='l6Perfects' class='levelPerfects '>8</div><div id='l6Fastest' class='levelFastest '>6.2 ש'</div><div id='l6ProgressBar' class='levelProgressBar' ></div> <div id='l6ProgressBarLeft' class='levelProgressBarLeft' ></div><div id='l6Toucher' class='levelToucher'></div><div id='l6Play' class='levelPlay ' ontouchstart='goToLevel(6)'></div></div>
+
+<div id='l7' class='levelCardLocked'><div id='l7Number' class='levelNumber strokeText'>7</div><div id='l7Score' class='levelScore '>6747</div><div id='l7Progress' class='levelProgress '></div><div id='l7ProgressLeft' class='levelProgressLeft'></div><div id='l7Perfects' class='levelPerfects '>8</div><div id='l7Fastest' class='levelFastest '>7.2 ש'</div><div id='l7ProgressBar' class='levelProgressBar' ></div> <div id='l7ProgressBarLeft' class='levelProgressBarLeft' ></div><div id='l7Toucher' class='levelToucher'></div><div id='l7Play' class='levelPlay ' ontouchstart='goToLevel(7)'></div></div>
+
+<div id='l8' class='levelCardLocked'><div id='l8Number' class='levelNumber strokeText'>8</div><div id='l8Score' class='levelScore '>6848</div><div id='l8Progress' class='levelProgress '></div><div id='l8ProgressLeft' class='levelProgressLeft'></div><div id='l8Perfects' class='levelPerfects '>8</div><div id='l8Fastest' class='levelFastest '>8.2 ש'</div><div id='l8ProgressBar' class='levelProgressBar' ></div> <div id='l8ProgressBarLeft' class='levelProgressBarLeft' ></div><div id='l8Toucher' class='levelToucher'></div><div id='l8Play' class='levelPlay ' ontouchstart='goToLevel(8)'></div></div>
+
+
+</div>
+
+</div>
+
+<div id='thumbsFrame' class='frame frameHidden'>
+<div id='thumbs'>
+	<div id='levelHeader'>
+	<div id='levelHolder' class='strokeText'>1</div>
+	<div id='scoreHolderLevel' class='strokeText'>0</div>
+	<div id='completedHolder' class='strokeText'>12/47</div>
+	<div id='thumbsBack' class='' ontouchstart='showOnly(0)'></div>
+	</div>
+	<div id='scrollbar'><div id='scrollbarfill'></div></div>
+	<div id='scroller' class='needsMargin' >
+	
+	</div>
+	
+</div>
+<!--
+<div id='thumbsLoader' class='blackMask'> 
+	<div class='thumbsLoading'>טוען..</div>
+	<div  class='ajax'></div>
+</div> !-->
+	
+</div>
+
+<div id='gameFrame' class='frame frameHidden'>
+<div id='gameHeader' class='header'>
+	<div id='hint' >
+
+	
+	
+		<div id='helpBox'>
+	<div id='helpTextContent'>לרשותך 3 אפשרויות לנצל את הנקודות שצברת: רמז ינצל נקודה אחת, הסרת אותיות לא רלוונטיות והשארת רק האותיות שנדרשות במקלדת ינצל 2 נקודות, וגילוי הלוגו ינצל 4 נקודות. נצל אותם בחוכמה!</div>
+	<div id='btShowHints' class='btHelp' ontouchstart='pointsMan.showHints()'>רמזים</div>
+	<div id='btReveal' class='btHelp'  ontouchstart='pointsMan.revealAnswer()'>הראה תשובה</div>
+	<div id='btHideKeys' class='btHelp'  ontouchstart='pointsMan.hideKeys()'>הסר אותיות</div>
+		</div>
+		
+		
+	<div id='hintBox' class='hidden'>
+	<div id='hintContent'></div>
+	<div id='btHint1' ontouchstart='showHint(1)'>רמז 3</div>
+	<div id='btHint2' ontouchstart='showHint(2)'>רמז 2</div>
+	<div id='btHint3' ontouchstart='showHint(3)'>רמז 1</div>
+	<div id='btCloseHints' ontouchstart='pointsMan.openHelp()'>חזור</div>
+		</div>
+		
+		<div class="blackMask" ontouchstart='hideHint()' ></div>
+	</div>
+		<div id='fbHolder' ontouchstart='postToFacebook()'	>FB</div>
+	<div id='hintNum' class='strokeText' ontouchstart='showHints()'	>12</div>
+	<div id='hintBt' ontouchstart='pointsMan.openHelp()'	>FB</div>
+	<div id='backButton'  onTouchStart='goToLevel(currentLevel)'>Back</div>
+	<div id='scoreHolder' class='strokeText'>0</div>
+	
+	
+	
+	</div>
+	
+	
+<div id='game'  class='needsMargin' >
+
+	
+	<div id='logoHolder' class='acacac' >
+	
+	<!-- <img src='images/1.png' class='logoImage acacac' id='logoImage'  onTouchStart='debugLogo()'></img> -->
+	<div id='logoDiv' onTouchStart='debugLogo()'></div>
+	<div id='logoDivBW' class='oT' onTouchStart='debugLogo()'></div>
+	</div>
+	<div  class='textBox' id='tb' dir='rtl'></div>
+	<input type='text'  class='textBox2' id='tbi' dir='rtl' onchange='answer=this.value'></input>
+	
+	<div class='gameButton' id='saveButton' onTouchStart='checkAnswer()'> בדוק</div>
+	<div class='gameButton'  id='checkButton' onTouchStart='clearAnswer()'>נקה</div>
+	<div class='keyboard acacac' id='kboard'>	</div>
+
+
+	</div>
+</div>
+
+<div id='achievementsFrame' class='frame frameHidden'>
+<div id='achievements' >
+	<div class='header' id='headerAchievements'>
+<div class='fbShare' ontouchstart='shareApp()'></div>
+<div class='headerText'></div>
+	<div  class='back' ontouchstart='showOnly(3)'></div>
+</div>
+
+
+	<div id='achievementsScrollbar'><div id='achievementsScrollbarfill'></div></div>
+	<div id='achievementsScroller' style='top:0px' class='needsMargin'>
+	</div>
+</div>
+</div>
+<div id='settingsFrame' class='frame frameHidden'>
+<div id='settings' >
+	<div class='header' id='headerSettings'>
+<div class='fbShare' ontouchstart='shareApp()'></div>
+<div class='headerText'></div>
+	<div  class='back' ontouchstart='showOnly(3)'></div>
+</div>
+
+	<div id='settingsButtons' style='top:0px' class='needsMargin'>
+	<div class='btMenu' id='btSounds' onclick='settingsManager.toggleSound()'>השתק סאונד </div>
+	<div class='btMenu' onclick='settingsManager.prompt()'>אפס התקדמות</div>
+	<div class='btMenu' style="display:none" id='stPrompt' onclick='settingsManager.resetProgress()'>לחץ כאן לאישור</div>
+	<div class='btMenu'  onclick='noobman.show()'>הראה עזרה שוב</div>
+	<div class='btMenu' style='display:none'  id ='btKeyboardToggle' onclick='settingsManager.keyboard()'>השתמש במקלדת רגילה</div>
+	</div>
+</div>
+</div>
+<div id='aboutFrame' class='frame frameHidden'>
+<div id='about' >
+	<div class='header' id='headerAbout'>
+<div class='fbShare' ontouchstart='shareApp()'></div>
+<div class='headerText'></div>
+	<div  class='back' ontouchstart='showOnly(3)'></div>
+</div>
+
+	<div id='aboutArea' style='top:0px' class='needsMargin'>
+	<p class='title'>נבנה ועוצב על ידי גבי גרינברג. </p>
+	<a onclick="AppMobi.device.launchExternal('http://www.facebook.com/LogoQuizIL')" target="_blank"> בקרו בדף הפייסבוק שלנו!</a>
+	<p> להצעות, דיווח על באגים, הופעה בתור לוגו במשחק ובירור אופציות פרסום אנא שלחו לי הודעה פרטית בדף הפייסבוק.</p>
+	<p class='credit'>תודה רבה לכל מי שעזר ותמך בבניית המשחק:</p>
+	<p class='creditNames'>תודה לשניר כהן, כפיר ברזילי, יעקוב רחמימוב, נדב בהונקר, מיכאל דונאייבסקי, רועי כהן, יובל גוטמן, ניר בניטה, ליאב משה, הנרי פשקוב ותודה ענקית לודים לחמקוב ושיר אביב היקרה לי מכל.</p>
+	</div>
+</div>
+</div>
+
+<div class='feedback' id='feedback'>קרוב גבר</div>
+
+<div id='noobTooltip'>
+<p></p>
+<div id='nbt1'  class='ttv' >  ברוכים הבאים למשחק הכי כחול לבן בסלולר! בהמשך יוצגו כמה טיפים חשובים שכדאי לדעת. חשוב שאם לא שיחקתם בעבר אל תדלגו עליהם.</div>
+<div id='nbt2'  class='tth'  > כל הלוגואים במשחק הם חברות ישראליות או תגליות ישראליות, מטבע הדברים להרבה חברות שמות באנגלית. במשחק אין אופציה להזין אותיות לועזיות, כל השמות שוכתבו בעברית (עם עד 3 חלופות תקינות). לדוגמא  American Airlines יהפוך להיות אמריקן איירליינס.</div>
+<div id='nbt3'  class='tth'  > בשמות של חברות הכוללות מספר, יש לרשום את המספר בצורה מפורשת. לדוגמא - "עמוס 2" יש לרשום "עמוס שתיים".</div>
+<div id='nbt4'  class=  'tth'  > סמלים בעלי מרכאות (") לדוגמא ראשי תיבות של ארגונים, יש לרשום עם שני גרשים. </div>
+<div id='nbt5' class= 'tth'  > על מנת לקבל ניקוד מושלם עליכם לנחש את הלוגו כשהוא עדיין בגוון כחלחל. כל הלוגואים מתחילים בגוון מוכחל ואחרי זמן מה נצבעים חזרה לצבעם המקורי.</div>
+<div id='nbt6' class= 'tth'  >  לכל לוגו 3 רמזים שאפשר להעזר בהם. על מנת לפתוח את מסך בחירת הרמזים יש ללחוץ על הכפתור המתאים בפס עליון בעת הניחוש. שימו לב, רק סיום לוגו בציון מעולה או הישג חדש יקנו לכם רמזים, אז השתמשו בהם בקפידה!</div>
+<div id='nbt7' class= 'tth'   > אם לא נותרו לכם רמזים נוספים תוכלו תמיד לשאול חבר בפייסבוק (המשחק לעולם לא יפרסם בשמכם ללא אישור), על ידי לחיצה על הכפתור המתאים במסך הניחוש, או לשתף את המשחק ולקבל 15 רמזים!</div>
+<div id='nbt8' class='tth' >   במשחק יש 60 הישגים, נראה אתכם משיגים את כולם! אז קדימה, למה אתם מחכים? </div>
+<div id='nbtNext' class='btMenu' onclick='noobman.next()'>הבא</div>
+<div id='nbtBack' class='btMenu' onclick='noobman.back()'>חזור</div>
+<div id='nbtSkip' class='btMenu' onclick='noobman.skip()'>דלג</div>
+
+
+
+
+</div>
+
+
+
+<div id='versionTooltip'>
+<p>מה חדש? </p>
+<div id='versionMessages'>
+</div>
+
+<div class='btMenu' onclick='verman.closeTooltip()'>סגור</div>
+
+
+
+</div>
+
+<div id='closePrompt'>
+האם ברצונך לצאת מהמשחק?
+<div class='btMenu' ontouchstart='backman.stay()'>השאר</div>
+<div class='btMenu' ontouchstart='backman.closeGame();'>צא</div>
+</div>
+<div id='achievementCard'>
+<div id='achievementHeader'>הישג חדש!</div>
+<div id='achievementDescription'>סיימת את כל הלוגואים בנושא אופנה!</div>
+<div id='achievementImage'></div>
+<div id ='achShare'  class='fbShare' onclick='shareAchievement()'></div>
+<div class='btMenu'  onclick='achman.closeCard()'>סגור</div>
+</div>
+<div id='adsImg'></div>
+<div id='adsText'>בקר באתר שלנו וקבל 50% הנחה על המוצרים!</div>
+
+<div id='debugger'>
+Debug Message
+</div>
+
+<div id='footer' class=''></div>
+<div id='adsSekindo' onclick=''  class='sekindoSmall'></div>
+</div>
+</body>
+
+<script type="text/javascript">
+//init();
+</script>
+
+<script type="text/javascript">
+
+
+</script>
+</html>

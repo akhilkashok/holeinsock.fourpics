@@ -1,0 +1,229 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+    <title>FourPIcs</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,target-densitydpi=device-dpi">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" type="text/css" href="css/fp.css"/>
+    <link rel="stylesheet" type="text/css" href="css/frameworkor.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/framework/css/af.ui.base.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/framework/css/af.ui.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/framework/css/icons.css"/>
+    <style>
+
+    </style>
+
+    <script type="text/javascript" charset="utf-8" src="http://localhost:58888/_appMobi/appmobi.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://localhost:58888/_appMobi/xhr.js"></script>
+
+
+    <!--<script type="text/javascript" charset="utf-8" src="lib/framework/appframework.min...js"></script>-->
+    <!--<script type="text/javascript" charset="utf-8" src="lib/framework/ui/appframework.ui.min.js"></script>-->
+    <script type="text/javascript" charset="utf-8" src="lib/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/jquery.innerSize.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/base64.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="js/levelData.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="js/userprogress.js"></script>
+    <!--<script type="text/javascript" charset="utf-8" src="js/userprogress.js"></script>-->
+    <!--<script type="text/javascript" charset="utf-8" src="js/userprogress.js"></script>-->
+    <script type="text/javascript" charset="utf-8" src="js/fp.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/ui.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="js/logger.js"></script>
+
+
+    <script>
+
+
+    </script>
+
+
+    <script type="text/javascript">
+        /* This function runs once the page is loaded, but appMobi is not yet active */
+
+
+        /* This code is used to run as soon as appMobi activates */
+        var onDeviceReady = function () {
+            AppMobi.device.setRotateOrientation("portrait");
+            AppMobi.device.setAutoRotate(false);
+            webRoot = AppMobi.webRoot + "kitchensink/";
+            //hide splash screen
+            AppMobi.device.hideSplashScreen();
+//            var now=(new Date()).getTime();
+//            var t=setInterval(function(){
+//                if (new Date().getTime()-now>12000) {
+//                  clearInterval(t);
+//                    return;
+//                }
+//                console.log(new Date().getTime()-now,$(document).height(),$(document).width())
+//            },25);
+            $(document.body).ready(function(){
+                console.log("B I");
+            })
+            $(document).ready(function(e){
+                console.log("INIT");
+                setTimeout(fp.init,500);
+            });
+        };
+        document.addEventListener("appMobi.device.ready", onDeviceReady, false);
+
+
+    </script>
+
+</head>
+<body>
+<header>
+    <span class='header-score'>Score: 192921</span>
+    <span class='header-stars'>* 562</span>
+       <span class='header-fb'>FB
+       </span>
+</header>
+<div id="content">
+    <!-- here is where you can add your panels -->
+    <div title="Language Select" class="panel" selected id="langselect">
+        <h1>4Pix</h1>
+
+        <h2> Choose your language:</h2>
+
+        <div class="select-languages">
+        </div>
+    </div>
+    <div title="Main Menu" class="panel" id="mainmenu">
+        <h1>4Pix</h1>
+        <img alt="Play" class="navbt" href="#worldselect">
+        <img alt="Settngs" class="navbt" href="#settings">
+        <img alt="About" class="navbt" href="#about">
+        <img alt="Achievements" class="navbt" href="#achievements">
+    </div>
+    <div title="World Select" class="panel" id="worldselect">
+        <h1> 4Pix</h1>
+
+        <div class="world-info navbt" href="#levelselect">
+            <span class="number">World 4</span>
+            <span class="completion"> 15/25</span>
+
+            <div class="prog-bar">
+                <div class="prog-bar-fill"></div>
+            </div>
+        </div>
+        <div class="world-info">
+            <span class="number">World 4</span>
+            <span class="completion"> 15/25</span>
+
+            <div class="prog-bar">
+                <div class="prog-bar-fill"></div>
+            </div>
+        </div>
+        <div class="world-info">
+            <span class="number">World 4</span>
+            <span class="completion"> 15/25</span>
+
+            <div class="prog-bar">
+                <div class="prog-bar-fill"></div>
+            </div>
+        </div>
+        <div class="world-info">
+            <span class="number">World 4</span>
+            <span class="completion"> 15/25</span>
+
+            <div class="prog-bar">
+                <div class="prog-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+    <div title="Level Select" class="panel" id="levelselect">
+        <h1> 4Pix</h1>
+
+        <div class="levels-container">
+
+        </div>
+    </div>
+    <div title="Achievements Select" class="panel" id="achievements">
+
+    </div>
+    <div title='Home' id="main" class="panel" selectedn="true">
+        <div id='images'>
+            <div class='row'>
+                <img src='images/data/5_1.jpg'/>
+                <img src='images/data/5_2.jpg'/>
+            </div>
+            <div class='row'>
+                <img src='images/data/5_3.jpg'/>
+                <img src='images/data/5_4.jpg'/>
+            </div>
+        </div>
+        <div id='input'>
+
+            <span>B</span>
+            <span>o</span>
+            <span>A</span>
+            <span>D</span>
+            <span>F</span>
+            <span>H</span>
+            <span>L</span>
+            <span>O</span>
+            <span>I</span>
+            <span>T</span>
+
+        </div>
+
+        <div id='keyboard'>
+            <div class='row'>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+            </div>
+            <div class='row'>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+                <button>A</button>
+            </div>
+
+        </div>
+        <div class="action-buttons">
+            <button id="check">Check</button>
+            <button id="help">?</button>
+            <button id="askfb">FB</button>
+        </div>
+
+
+    </div>
+    <div title='Debugger' id='debug' class='panel'>
+
+        <h1>Console</h1>
+        <ul id="logger"></ul>
+        <h2> Debug</h2>
+        <textarea id='code'>
+
+        </textarea>
+        <button onclick='fp.debugger.runCode()'>Run</button>
+        <button onclick='fp.debugger.clearLog()'>Clear console</button>
+    </div>
+</div>
+<!-- bottom navbar. Add additional tabs here -->
+<footer>
+    <div>
+        <a href="#main" class='icon navbt' style='overflow:hidden'>home</a>
+        <a href="#test" class='icon navbt'>test</a>
+        <a href="#debug" class='icon navbt'>DEBUG</a>
+    </div>
+    <p> All rights reserved to hole in sock</p>
+</footer>
+
+</div>
+</body>
+</html>
